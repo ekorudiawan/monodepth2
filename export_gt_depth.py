@@ -28,7 +28,7 @@ def export_gt_depths_kitti():
                         type=str,
                         help='which split to export gt from',
                         required=True,
-                        choices=["eigen", "eigen_benchmark"])
+                        choices=["eigen", "eigen_benchmark", "brail"])
     opt = parser.parse_args()
 
     split_folder = os.path.join(os.path.dirname(__file__), "splits", opt.split)
@@ -43,6 +43,11 @@ def export_gt_depths_kitti():
         frame_id = int(frame_id)
 
         if opt.split == "eigen":
+            calib_dir = os.path.join(opt.data_path, folder.split("/")[0])
+            velo_filename = os.path.join(opt.data_path, folder,
+                                         "velodyne_points/data", "{:010d}.bin".format(frame_id))
+            gt_depth = generate_depth_map(calib_dir, velo_filename, 2, True)
+        elif opt.split == "brail":
             calib_dir = os.path.join(opt.data_path, folder.split("/")[0])
             velo_filename = os.path.join(opt.data_path, folder,
                                          "velodyne_points/data", "{:010d}.bin".format(frame_id))
