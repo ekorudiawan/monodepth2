@@ -43,8 +43,8 @@ class KITTIDataset(MonoDataset):
             self.data_path,
             scene_name,
             "velodyne_points/data/{:010d}.bin".format(int(frame_index)))
-
-        return os.path.isfile(velo_filename)
+        return False
+        # return os.path.isfile(velo_filename)
 
     def get_color(self, folder, frame_index, side, do_flip):
         color = self.loader(self.get_image_path(folder, frame_index, side))
