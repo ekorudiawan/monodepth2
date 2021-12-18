@@ -51,7 +51,7 @@ def export_gt_depths_kitti():
             calib_dir = os.path.join(opt.data_path, folder.split("/")[0])
             velo_filename = os.path.join(opt.data_path, folder,
                                          "velodyne_points/data", "{:010d}.bin".format(frame_id))
-            gt_depth = generate_depth_map(calib_dir, velo_filename, 2, True)
+s            gt_depth = generate_depth_map(calib_dir, velo_filename, 2, True)
         elif opt.split == "eigen_benchmark":
             gt_depth_path = os.path.join(opt.data_path, folder, "proj_depth",
                                          "groundtruth", "image_02", "{:010d}.png".format(frame_id))

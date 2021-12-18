@@ -42,7 +42,8 @@ def parse_args():
                             "mono+stereo_no_pt_640x192",
                             "mono_1024x320",
                             "stereo_1024x320",
-                            "mono+stereo_1024x320"])
+                            "mono+stereo_1024x320",
+                            "stereo_brail"])
     parser.add_argument('--ext', type=str,
                         help='image extension to search for in folder', default="jpg")
     parser.add_argument("--no_cuda",
@@ -71,8 +72,10 @@ def test_simple(args):
         print("Warning: The --pred_metric_depth flag only makes sense for stereo-trained KITTI "
               "models. For mono-trained models, output depths will not in metric space.")
 
-    download_model_if_doesnt_exist(args.model_name)
-    model_path = os.path.join("models", args.model_name)
+    # Comment
+    # download_model_if_doesnt_exist(args.model_name)
+    # model_path = os.path.join("models", args.model_name)
+    model_path = os.path.join("/home/ekorudiawan/tmp/stereo_model/models","weights_6000")
     print("-> Loading model from ", model_path)
     encoder_path = os.path.join(model_path, "encoder.pth")
     depth_decoder_path = os.path.join(model_path, "depth.pth")
